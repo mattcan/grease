@@ -1,0 +1,72 @@
+@model Grease.Identifiers.Assessment
+@using System.Collections.Generic
+@using Grease.Identifiers
+@using System.Linq
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Model.Title</title>
+        <style type="text/css">
+            .correct { color: green; }
+            .incorrect { color: red; }
+        </style>
+    </head>
+    <body>
+        <h1>@Model.Title</h1>
+        @{ await IncludeAsync("_items.cshtml", Model.Items); }
+        <hr>
+        <button id="check-answers">Check Answers</button>
+
+        <script type="text/javascript">
+            @{ var answerIdsCSV = String.Join("', '", Model.AllAnswers.Select(x => x.Id)); }
+            const answers = ['@Raw(answerIdsCSV)'];
+
+            function checkAnswers() {
+                const alternatives = getAlternatives();
+                for (var index = 0; index < alternatives.length; index += 1) {
+                    const alt = alternatives[index];
+                    if (hasBeenSelected(alt)) {
+                        if (isAnAnswer(alt.value)) {
+                            markCorrect(alt);
+                        } else {
+                            markIncorrect(alt);
+                        }
+                    } else {
+                        if (isAnAnswer(alt.value)) {
+                            markCorrect(alt);
+                        }
+                    }
+                }
+            }
+
+            function getAlternatives() {
+                return document
+                    .getElementById('item-list')
+                    .getElementsByClassName('alternative');
+            }
+
+            function isAnAnswer(id) {
+                return answers.indexOf(id) > -1;
+            }
+
+            function hasBeenSelected(element) {
+                if (element.type === "checkbox" && element.checked) return true;
+                if (element.type === "radio" && element.selected) return true;
+
+                return false;
+            }
+
+            function markCorrect(element) {
+                element.parentElement.className = 'correct';
+            }
+
+            function markIncorrect(element) {
+                element.parentElement.className = 'incorrect';
+            }
+
+            const button = document.getElementById('check-answers');
+            button.onclick = checkAnswers;
+        </script>
+    </body>
+</html>

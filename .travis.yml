@@ -1,0 +1,6 @@
+language: csharp
+mono: none
+dotnet: 2.0.2
+script:
+  - dotnet restore
+  - dotnet test test/GreaseTest/GreaseTest.csproj

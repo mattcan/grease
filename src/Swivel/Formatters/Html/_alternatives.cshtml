@@ -1,0 +1,16 @@
+@functions
+{
+    public string getInputType(Grease.AlternativeType type) {
+        if (type == Grease.AlternativeType.SingleSelect) return "radio";
+        if (type == Grease.AlternativeType.MultiSelect) return "checkbox";
+        return "text";
+    }
+}
+
+<ol type="a">
+@foreach (var alt in Model) {
+    <li>
+        <label><input class="alternative" type="@getInputType(alt.Type)" value="@alt.Id">@alt.Text</label>
+    </li>
+}
+</ol>

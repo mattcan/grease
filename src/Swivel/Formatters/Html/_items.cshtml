@@ -1,0 +1,8 @@
+<ol id="item-list">
+@foreach (var item in Model) {
+    <li>
+        @item.Stem
+        @{ await IncludeAsync("_alternatives.cshtml", item.Alternatives); }
+    </li>
+}
+</ol>
