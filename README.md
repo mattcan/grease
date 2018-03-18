@@ -3,6 +3,12 @@
 A Domain Specific Language (DSL) for creating assessments, heavily based on
 Markdown.
 
-## Todo
+## Usage
 
-The rest of this Readme?
+_todo_
+
+## Development
+
+1. Run `scripts/setup.sh`
+
+_todo_
