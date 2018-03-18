@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Grease Project Pop Quiz</title>
+        <style type="text/css">
+            .correct { color: green; }
+            .incorrect { color: red; }
+        </style>
+    </head>
+    <body>
+        <h1>Grease Project Pop Quiz</h1>
+<ol id="item-list">
+    <li>
+        What is Grease?
+
+<ol type="a">
+    <li>
+        <label><input class="alternative" type="checkbox" value="a222853a-2103-4b09-b74c-3957631e791b">A Domain Specific Language for creating assessments</label>
+    </li>
+    <li>
+        <label><input class="alternative" type="checkbox" value="579606e0-326b-4cd2-a48f-bfbcb979e4db">Super cool</label>
+    </li>
+    <li>
+        <label><input class="alternative" type="checkbox" value="1f6c50d2-051b-4232-bf81-5fcec66b407f">Not this project</label>
+    </li>
+</ol>    </li>
+    <li>
+        Does it look a lot like Markdown?
+
+<ol type="a">
+    <li>
+        <label><input class="alternative" type="radio" value="c7aa71ab-ca74-4f5f-8cff-275beb5d30fc">No</label>
+    </li>
+    <li>
+        <label><input class="alternative" type="radio" value="24cdfbc6-6478-4110-a0e4-2edfd4d607d5">Yes</label>
+    </li>
+</ol>    </li>
+</ol>        <hr>
+        <button id="check-answers">Check Answers</button>
+
+        <script type="text/javascript">
+            const answers = ['a222853a-2103-4b09-b74c-3957631e791b', '579606e0-326b-4cd2-a48f-bfbcb979e4db', '24cdfbc6-6478-4110-a0e4-2edfd4d607d5'];
+
+            function checkAnswers() {
+                const alternatives = getAlternatives();
+                for (var index = 0; index < alternatives.length; index += 1) {
+                    const alt = alternatives[index];
+                    if (hasBeenSelected(alt)) {
+                        if (isAnAnswer(alt.value)) {
+                            markCorrect(alt);
+                        } else {
+                            markIncorrect(alt);
+                        }
+                    } else {
+                        if (isAnAnswer(alt.value)) {
+                            markCorrect(alt);
+                        }
+                    }
+                }
+            }
+
+            function getAlternatives() {
+                return document
+                    .getElementById('item-list')
+                    .getElementsByClassName('alternative');
+            }
+
+            function isAnAnswer(id) {
+                return answers.indexOf(id) > -1;
+            }
+
+            function hasBeenSelected(element) {
+                if (element.type === "checkbox" && element.checked) return true;
+                if (element.type === "radio" && element.selected) return true;
+
+                return false;
+            }
+
+            function markCorrect(element) {
+                element.parentElement.className = 'correct';
+            }
+
+            function markIncorrect(element) {
+                element.parentElement.className = 'incorrect';
+            }
+
+            const button = document.getElementById('check-answers');
+            button.onclick = checkAnswers;
+        </script>
+    </body>
+</html>
