@@ -1,0 +1,19 @@
+#!/bin/bash
+
+root=`git rev-parse --show-toplevel`
+
+# Attempt to build
+dotnet build "${root}/grease.sln"
+result=$?
+if [[ $result != 0 ]] ; then
+    echo "Build failed"
+    exit $result
+fi
+
+# Attempt tests
+dotnet test "$root/test/GreaseTest/GreaseTest.csproj"
+result=$?
+if [[ $result != 0 ]] ; then
+    echo "Tests failed"
+    exit $result
+fi
