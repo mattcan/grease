@@ -1,6 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>Grease</PackageId>
+    <Title>Grease</Title>
+    <Version>0.1.0</Version>
+    <Authors>Matthew Cantelon</Authors>
+    <PackageLicenseUrl>https://github.com/mattcan/grease/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageTags>dsl;assessment;parser</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/mattcan/grease</RepositoryUrl>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 

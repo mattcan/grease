@@ -25,13 +25,18 @@ Swivel is a command line application for parsing Grease files into JSON or HTML.
 
 ![Picture of Grease assessment rendered to HTML](demo/parsed_html.png)
 
+## Installation
+
+Currently there isn't an installer or single executable. To build the project, run the following commands:
+
+```sh
+cd src/Swivel
+dotnet build -c Release
+sudo ln -s ~/grease/src/Swivel/bin/Release/netcoreapp2.0/ubuntu.16.04-x64/Swivel /usr/bin/swivel
+```
+
 ### Usage
 
-_todo_
-
-## Development
-
-1. Run `scripts/setup.sh`.
-1. Write code.
-
-_todo_
+```sh
+swivel my_quiz.md my_quiz_output.html --format=html
+```
